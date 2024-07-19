@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROMPECABEZAS PARA MI BELLA NOVIA</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        h1 {
+            color: #ff66b2;
+        }
+        .puzzle {
+            display: grid;
+            grid-template-columns: repeat(4, 80px);
+            grid-template-rows: repeat(4, 80px);
+            gap: 2px;
+            margin-top: 20px;
+            width: 320px;
+            height: 320px;
+        }
+        .piece {
+            width: 80px; 
+            height: 80px;
+            background-image: url('file:///C:/Users/NICOLAS/Documents/P%C3%81GINAS%20WEB/rompecabezas.jpeg');
+            background-size: 320px 320px;
+            cursor: pointer;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>ROMPECABEZAS</h1>
+    <div class="puzzle" id="puzzle">
+        <div class="piece" style="left: 0; top: 0; background-position: 0 0;"></div>
+        <div class="piece" style="left: 80px; top: 0; background-position: -80px 0;"></div>
+        <div class="piece" style="left: 160px; top: 0; background-position: -160px 0;"></div>
+        <div class="piece" style="left: 240px; top: 0; background-position: -240px 0;"></div>
+        <div class="piece" style="left: 0; top: 80px; background-position: 0 -80px;"></div>
+        <div class="piece" style="left: 80px; top: 80px; background-position: -80px -80px;"></div>
+        <div class="piece" style="left: 160px; top: 80px; background-position: -160px -80px;"></div>
+        <div class="piece" style="left: 240px; top: 80px; background-position: -240px -80px;"></div>
+        <div class="piece" style="left: 0; top: 160px; background-position: 0 -160px;"></div>
+        <div class="piece" style="left: 80px; top: 160px; background-position: -80px -160px;"></div>
+        <div class="piece" style="left: 160px; top: 160px; background-position: -160px -160px;"></div>
+        <div class="piece" style="left: 240px; top: 160px; background-position: -240px -160px;"></div>
+        <div class="piece" style="left: 0; top: 240px; background-position: 0 -240px;"></div>
+        <div class="piece" style="left: 80px; top: 240px; background-position: -80px -240px;"></div>
+        <div class="piece" style="left: 160px; top: 240px; background-position: -160px -240px;"></div>
+        <div class="piece" style="left: 240px; top: 240px; background-position: -240px -240px;"></div>
+    </div>
+
+    <script>
+        const puzzle = document.getElementById('puzzle');
+        const pieces = [];
+
+        for (let i = 0; i < 16; i++) {
+            const piece = document.createElement('div');
+            piece.classList.add('piece');
+            const x = (i % 4) * 80;
+            const y = Math.floor(i / 4) * 80;
+            piece.style.backgroundPosition = `-${x}px -${y}px`;
+            piece.setAttribute('draggable', 'true');
+            piece.setAttribute('data-index', i);
+            pieces.push(piece);
+        }
+
+        //Mezclar piezas
+        pieces.sort(() => Math.random() -0.5);
+        pieces.forEach(piece => puzzle.appendChild(piece));
+
+        let draggedPiece = null;
+
+        pieces.forEach(piece => {
+            piece.addEventListener('dragstart', () => {
+                draggedPiece = piece;
+            });
+
+            piece.addEventListener('dragover', event => {
+                event.preventDefault();
+            });
+
+            piece.addEventListener('drop', event => {
+                event.preventDefault();
+                if (draggedPiece) {
+                    const targetPiece = event.target;
+                    const draggedIndex = draggedPiece.getAttribute('data-index');
+                    const targetIndex = targetPiece.getAttribute('data-index');
+
+                    // Intercambiar las piezas
+                    const draggedPos = [...puzzle.children].indexOf(draggedPiece);
+                    const targetPos = [...puzzle.children].indexOf(targetPiece);
+
+                    if (draggedPos < targetPos) {
+                        puzzle.insertBefore(draggedPiece, targetPiece.nextSibling);
+                        puzzle.insertBefore(targetPiece, draggedPiece);
+                    } else {
+                        puzzle.insertBefore(targetPiece. draggedPiece.nextSibling);
+                        puzzle.insertBefore(draggedPiece, targetPiece);
+                    }
+
+                    // Actualizar índices de las piezas
+                    draggedPiece.setAttribute('data-index', targetIndex);
+                    targetPiece.setAttribute('data-index', draggedIndex);
+
+                    draggedPiece = null;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
