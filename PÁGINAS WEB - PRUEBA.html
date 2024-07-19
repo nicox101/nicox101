@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRIMERA PÁGINA WEB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0000ff;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 1em;
+            text-decoration: none;
+        }
+        main {
+            padding: 2em;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>¡BIENVENIDOS A MI PRIMERA PÁGINA WEB!</h1>
+    </header>
+    <nav>
+        <a href="#home">Inicio</a>
+        <a href="#about">Sobre mi</a>
+        <a href="#contact">Contacto</a>
+        <a href="News">Noticias</a>
+    </nav>
+    <main>
+        <section id="home">
+            <h2>Inicio</h2>
+            <p>Sección de inicio de mi primera página WEB.</p>
+        </section>
+        <section id="about">
+            <h2>Sobre mi</h2>
+            <p>Este es mi primer página WEB. Me ha intersado el mundo de la programació, por ende me he dado el trabajo de diseñar estaprimer prototipo de página WEB. Estudio Ingeniería Electrónica y de telecomunicaciones, en un futuro aspiro a muchas oportunidades.</p>
+        </section>
+        <section id="contact">
+            <h2>Contacto</h2>
+            <p>Puedes contactarme a través del siguiente formulario.</p>
+            <form>
+                <label for="name">Nombre</label><br>
+                <input type="text" id="name" name="name"><br>
+                <label for="email">Email</label><br>
+                <input type="email" id="email" name="email"><br>
+                <input type="submit" value="Enviar">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Mi primera página WEB. Todos los derechos reservados.</p>
+    </footer>   
+</body>
+</html>
